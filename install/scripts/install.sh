@@ -19,7 +19,7 @@ python -m pip install --upgrade pip
 
 # Install git annex
 pip install datalad-installer
-sudo datalad-installer git-annex -m datalad/packages
+sudo -E datalad-installer git-annex -m datalad/packages
 #sudo apt-get install -y haskell-stack zlib1g-dev
 #git clone git://git-annex.branchable.com/ /tmp/git-annex
 #cd /tmp/git-annex
