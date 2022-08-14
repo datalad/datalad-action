@@ -22,6 +22,12 @@ pip install datalad-installer
 datalad-installer git-annex
 git config --global filter.annex.process "git-annex filter-process"
 
+# Ensure git annex added to path
+# Datalad needs to be installed to this conda environment
+echo "/usr/share/miniconda/bin" >> ${GITHUB_PATH}
+export PATH="/usr/share/miniconda/bin:$PATH"
+which pip
+
 # Do we have a release or a branch?
 if [ "${release}" != "" ]; then
     printf "Installing datalad from release ${release}...\n"
@@ -41,7 +47,3 @@ else
         cd -
     fi
 fi
-
-# Ensure git annex added to path
-echo "/usr/share/miniconda/bin" >> ${GITHUB_PATH}
-ls /usr/share/miniconda/bin
