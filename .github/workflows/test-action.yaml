@@ -14,6 +14,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Install Datalad
         uses: ./install
+      - name: Check Installed
+        run: which datalad
 
   install-datalad-branch:
     runs-on: ubuntu-latest
@@ -25,6 +27,8 @@ jobs:
         uses: ./install
         with:
           branch: debian
+      - name: Check Installed
+        run: which datalad
 
   install-datalad-full-clone:
     runs-on: ubuntu-latest
@@ -38,6 +42,8 @@ jobs:
           full_clone: true
           user: ${{ github.actor }}
           email: ${{ github.actor }}@noreply.users.github.com
+      - name: Check Installed
+        run: which datalad
 
   install-datalad-release:
     runs-on: ubuntu-latest
@@ -49,3 +55,5 @@ jobs:
         uses: ./install
         with:
           release: 0.17.2
+      - name: Check Installed
+        run: which datalad
