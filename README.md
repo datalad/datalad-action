@@ -88,6 +88,16 @@ You can use this with a cache action to easily cache the result to your liking.
 ```bash
 ...
 
+      - name: Download Dataset
+        uses: datalad/datalad-action/get@main
+        with:
+          source: https://github.com/psychoinformatics-de/studyforrest-data-phase2
+      - name: Cache Dataset
+        uses: actions/cache@v3
+        with:
+          path: ./studyforrest-data-phase2
+          key: ${{ runner.os }}-studyforrest
+
 ```
 
 Generally, the download action supports all the same parameters as install, meaning it will
