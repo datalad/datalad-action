@@ -53,7 +53,7 @@ runs:
 
     - name: Check for Datalad Install
       run: |
-         not_installed = false
+         not_installed=false
          which datalad || not_installed=true
          echo "datalad_not_installed=${not_installed}" >> $GITHUB_ENV          
       shell: bash

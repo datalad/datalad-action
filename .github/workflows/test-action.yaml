@@ -33,6 +33,20 @@ jobs:
           source: https://github.com/psychoinformatics-de/studyforrest-data-phase2
       - name: Show Result
         run: tree .
+
+  dataset-get-custom-install:
+    runs-on: ubuntu-latest
+    name: Datalad Get With Install
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Download Dataset
+        uses: ./get
+        with:
+          branch: debian
+          source: https://github.com/psychoinformatics-de/studyforrest-data-phase2
+      - name: Show Result
+        run: tree .
   
   install-datalad-branch:
     runs-on: ubuntu-latest

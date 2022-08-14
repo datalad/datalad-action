@@ -83,4 +83,23 @@ jobs:
           source: https://github.com/psychoinformatics-de/studyforrest-data-phase2
 ```
 
+Generally, the download action supports all the same parameters as install, meaning it will
+install datalad for you (and you don't need to use install). However, if for some reason
+you want to install datalad in a different way (not using the action) as long as it is found on your
+path, it won't be installed again. Here is a table of parameters that can be used (in addition
+to the paramaters above, which are included to be explicitly clear).
+
+An entire table of options is shown here, and you can look at the [install/action.yaml](install/action.yaml)
+for more details.
+
+| Name | Description | Default | Required |
+|------|-------------|---------|----------|
+| repository  | Repository to install datalad | datalad/datalad | no |
+| branch      | The branch of datalad to use | master | no |
+| install_root| If installed from a branch and full_clone, install to this root | /opt/datalad | no |
+| release     | A datalad release to use (if defined, over-rides branch) | unset | no |
+| full_clone  | Instead of cloning with `--depth 1`, clone the entire git history (branch only) | false | no |
+| user        | User to provide to GitHub | github-actions | no |
+| email       | Email to provide to GitHub | github-actions@users.noreply.github.com | no |
+
 
