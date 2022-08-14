@@ -19,8 +19,8 @@ python -m pip install --upgrade pip
 # Do we have a release or a branch?
 if [ "${release}" != "" ]; then
     printf "Installing datalad from release ${release}...\n"
-    wget https://github.com/${repository}/releases/download/v${release}/datalad-${release}.tar.gz
-    pip install datalad-${release}.tar.gz
+    wget https://github.com/${repository}/archive/refs/tags/${release}.tar.gz
+    pip install ${release}.tar.gz
 
 # Branch install, either shallow or full clone
 else

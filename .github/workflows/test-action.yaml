@@ -28,7 +28,7 @@ jobs:
 
   install-datalad-full-clone:
     runs-on: ubuntu-latest
-    name: Install Datalad via Branch
+    name: Install Datalad via Full Clone
     steps:
       - name: Checkout
         uses: actions/checkout@v3
