@@ -83,6 +83,13 @@ jobs:
           source: https://github.com/psychoinformatics-de/studyforrest-data-phase2
 ```
 
+You can use this with a cache action to easily cache the result to your liking.
+
+```bash
+...
+
+```
+
 Generally, the download action supports all the same parameters as install, meaning it will
 install datalad for you (and you don't need to use install). However, if for some reason
 you want to install datalad in a different way (not using the action) as long as it is found on your
@@ -94,6 +101,11 @@ for more details.
 
 | Name | Description | Default | Required |
 |------|-------------|---------|----------|
+| source      | The dataset source (e.g., a https address) | unset | yes |
+| recursive   | Get sub-datasets recursively | true | no |
+| jobs        | Number of jobs (workers) for downloading with datalad | auto | no |
+| paths       | A list of paths (newline separated) in the dataset to download | unset | no |
+| all         | Get all data | unset | no |
 | repository  | Repository to install datalad | datalad/datalad | no |
 | branch      | The branch of datalad to use | master | no |
 | install_root| If installed from a branch and full_clone, install to this root | /opt/datalad | no |
@@ -102,4 +114,4 @@ for more details.
 | user        | User to provide to GitHub | github-actions | no |
 | email       | Email to provide to GitHub | github-actions@users.noreply.github.com | no |
 
-
+Have any questions? Don't hesitate to open an issue! 
