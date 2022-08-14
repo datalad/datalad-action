@@ -38,7 +38,6 @@ runs:
       with:
         path: /home/runner/.stack
         key: ${{ runner.os }}-${{ env.runner_cpu }}-clingo
-      shell: bash
     - name: Install Datalad and Dependencies
       env:
         user: ${{ inputs.user }}
