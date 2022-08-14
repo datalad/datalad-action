@@ -23,7 +23,7 @@ jobs:
 
   dataset-get:
     runs-on: ubuntu-latest
-    name: Datalad Install and Get
+    name: Install Datalad and Get
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -36,7 +36,7 @@ jobs:
 
   dataset-get-custom-install:
     runs-on: ubuntu-latest
-    name: Datalad Get With Install
+    name: Get With Install
     steps:
       - name: Checkout
         uses: actions/checkout@v3

@@ -18,7 +18,7 @@ git config --global --add user.email  "${email}"
 python -m pip install --upgrade pip
 
 # Install git annex
-apt-get install -y git-annex
+sudo apt-get install -y git-annex
 git config --global filter.annex.process "git-annex filter-process"
 
 # Do we have a release or a branch?
