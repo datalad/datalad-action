@@ -60,6 +60,27 @@ for more details.
 
 ## Download
 
-This will download (get) a datalad dataset
+This will download (get) a datalad dataset. Here is a simple example:
 
-**under development**
+```yaml
+name: Download Dataset
+on:
+  pull_request: []
+  push:
+    branches:
+      - main 
+ 
+jobs:
+  get-dataset:
+    runs-on: ubuntu-latest
+    name: Datalad Install and Get
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Download Dataset
+        uses: datalad/datalad-action/get@main
+        with:
+          source: https://github.com/psychoinformatics-de/studyforrest-data-phase2
+```
+
+
