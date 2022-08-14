@@ -18,7 +18,10 @@ git config --global --add user.email  "${email}"
 python -m pip install --upgrade pip
 
 # Install git annex
-sudo apt-get install -y git-annex
+sudo apt-get build-dep -y git-annex
+git clone git://git-annex.branchable.com/ /tmp/git-annex
+cd /tmp/git-annex
+sudo make install PREFIX=/usr/local
 git config --global filter.annex.process "git-annex filter-process"
 
 # Do we have a release or a branch?
