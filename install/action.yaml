@@ -32,11 +32,13 @@ runs:
         pip install archspec
         runner_cpu=$(archspec cpu)
         echo "runner_cpu=${runner_cpu}" >> $GITHUB_ENV
+      shell: bash
     - name: Git Annex Cache
       uses: actions/cache@v3
       with:
         path: /home/runner/.stack
         key: ${{ runner.os }}-${{ env.runner_cpu }}-clingo
+      shell: bash
     - name: Install Datalad and Dependencies
       env:
         user: ${{ inputs.user }}
