@@ -19,13 +19,7 @@ python -m pip install --upgrade pip
 
 # Install git annex
 pip install datalad-installer
-datalad-installer git-annex -m datalad/packages
-#sudo apt-get install -y haskell-stack zlib1g-dev
-#git clone git://git-annex.branchable.com/ /tmp/git-annex
-#cd /tmp/git-annex
-#stack setup
-#stack build
-#sudo make install BUILDER=stack PREFIX=/usr/local
+datalad-installer git-annex
 git config --global filter.annex.process "git-annex filter-process"
 
 # Do we have a release or a branch?
