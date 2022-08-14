@@ -17,6 +17,11 @@ git config --global --add user.email  "${email}"
 
 python -m pip install --upgrade pip
 
+# Use datalad-installer for git annex
+pip install datalad-installer
+datalad-installer git-annex -m datalad/packages
+git config --global filter.annex.process "git-annex filter-process"
+
 # Do we have a release or a branch?
 if [ "${release}" != "" ]; then
     printf "Installing datalad from release ${release}...\n"

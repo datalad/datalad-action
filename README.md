@@ -93,8 +93,9 @@ You can use this with a cache action to easily cache the result to your liking.
 Generally, the download action supports all the same parameters as install, meaning it will
 install datalad for you (and you don't need to use install). However, if for some reason
 you want to install datalad in a different way (not using the action) as long as it is found on your
-path, it won't be installed again. Here is a table of parameters that can be used (in addition
-to the paramaters above, which are included to be explicitly clear).
+path, it won't be installed again. Keep in mind that you don't just need datalad, but you also need git-annex,
+and the datalad action installs both. You can learn more about installation [here](https://handbook.datalad.org/en/inm7/intro/installation.html).
+Here is a table of parameters that can be used (in addition to the paramaters above, which are included to be explicitly clear).
 
 An entire table of options is shown here, and you can look at the [install/action.yaml](install/action.yaml)
 for more details.
