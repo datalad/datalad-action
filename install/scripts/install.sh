@@ -24,7 +24,7 @@ if [ "${release}" != "" ]; then
 
 # Branch install, either shallow or full clone
 else
-    if [[ "${full_clone}" == "false" ]]; then
+    if [[ "${full_clone}" == "true" ]]; then
         printf "Installing datalad from branch ${branch} with full clone...\n"
         git clone --depth 1 -b ${branch} https://github.com/${repository} /tmp/datalad
         cd /tmp/datalad

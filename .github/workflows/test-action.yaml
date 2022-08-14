@@ -37,7 +37,7 @@ jobs:
         with:
           full_clone: true
           user: ${{ github.actor }}
-          emali: ${{ github.actor }}@noreply.users.github.com
+          email: ${{ github.actor }}@noreply.users.github.com
 
   install-datalad-release:
     runs-on: ubuntu-latest
