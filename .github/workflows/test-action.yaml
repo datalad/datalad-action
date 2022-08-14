@@ -1,0 +1,51 @@
+name: Test Datalad Action
+on:
+  pull_request: []
+  push:
+    branches:
+      - main 
+ 
+jobs:
+  install-datalad:
+    runs-on: ubuntu-latest
+    name: Install Datalad
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Datalad
+        uses: ./install
+
+  install-datalad-branch:
+    runs-on: ubuntu-latest
+    name: Install Datalad via Branch
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Datalad
+        uses: ./install
+        with:
+          branch: debian
+
+  install-datalad-full-clone:
+    runs-on: ubuntu-latest
+    name: Install Datalad via Branch
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Datalad
+        uses: ./install
+        with:
+          full_clone: true
+          user: ${{ github.actor }}
+          emali: ${{ github.actor }}@noreply.users.github.com
+
+  install-datalad-release:
+    runs-on: ubuntu-latest
+    name: Install Datalad via Release
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Datalad via Release
+        uses: ./install
+        with:
+          release: 0.17.2
