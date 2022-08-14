@@ -1,0 +1,35 @@
+name: "Datalad Install Action"
+description: "Install a specific branch or release of datalad."
+inputs:
+  repository:
+    description: repository to install datalad from (defaults to datalad/datalad)
+    default: datalad/datalad
+  branch:
+    description: The branch of datalad to use (defaults to master)
+    default: master
+  release:
+    description: A datalad release to use (if defined, over-rides branch)
+    default: ""
+  full_clone:
+    description: Instead of cloning with --depth 1, clone the entire git history (branch only)
+    default: "false"
+  user:
+    description: User to provide to GitHub
+    default: "github-actions"
+  email:
+    description: Email to provide to GitHub
+    default: "github-actions@users.noreply.github.com"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install Datalad and Dependencies
+      env:
+        user: ${{ inputs.user }}
+        email: ${{ inputs.email }}
+        branch: ${{ inputs.branch }}
+        release: ${{ inputs.release }}
+        full_clone: ${{ inputs.full_clone }}
+        repository: ${{ inputs.repository }}
+      run: ${{ github.action_path }}/scripts/install.sh
+      shell: bash
