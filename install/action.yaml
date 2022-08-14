@@ -7,6 +7,9 @@ inputs:
   branch:
     description: The branch of datalad to use (defaults to master)
     default: master
+  install_root:
+    description: If installed from a branch and full_clone, install to this root (defaults to /opt/datalad)
+    default: /opt/datalad
   release:
     description: A datalad release to use (if defined, over-rides branch)
     default: ""
@@ -31,5 +34,6 @@ runs:
         release: ${{ inputs.release }}
         full_clone: ${{ inputs.full_clone }}
         repository: ${{ inputs.repository }}
+        install_root: ${{ inputs.install_root }}
       run: ${{ github.action_path }}/scripts/install.sh
       shell: bash

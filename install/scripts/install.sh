@@ -9,6 +9,7 @@ printf "repository: ${repository}\n"
 printf "release: ${release}\n"
 printf "branch: ${branch}\n"
 printf "full_clone: ${full_clone}\n"
+printf "install_root: ${install_root}\n"
 
 # This is in the install instructions
 git config --global --add user.name "${user}"
@@ -24,15 +25,14 @@ if [ "${release}" != "" ]; then
 
 # Branch install, either shallow or full clone
 else
-    if [[ "${full_clone}" == "true" ]]; then
-        printf "Installing datalad from branch ${branch} with full clone...\n"
-        git clone --depth 1 -b ${branch} https://github.com/${repository} /tmp/datalad
-        cd /tmp/datalad
-        pip install .
-        cd -
-        rm -rf /tmp/datalad
-    else
+    if [[ "${full_clone}" != "true" ]]; then
         printf "Installing datalad from branch ${branch}...\n"
         pip install git+https://github.com/${repository}.git@${branch}
+    else
+        printf "Installing datalad from branch ${branch} with full clone into ${install_root}...\n"
+        git clone -b ${branch} https://github.com/${repository} ${install_root}
+        cd ${install_root}
+        pip install .
+        cd -
     fi
 fi
