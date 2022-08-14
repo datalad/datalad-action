@@ -1,0 +1,83 @@
+name: "Datalad Download (get)"
+description: "Download Datasets with Datalad"
+inputs:
+  source:
+    description: dataset source
+    required: true
+  recursive:
+    description: Get sub-datasets recursively (defaults to true)
+    default: true
+  jobs:
+    description: Number of jobs (workers) for downloading with datalad (defaults to auto)
+    required: false
+    default: auto
+  all:
+    description: Get all the data in the dataset by passing --get-data to datalad install
+    required: false
+    default: ""
+  paths:
+    description: A list of paths in the dataset to download
+    required: false
+
+  # These inputs are for install
+  repository:
+    description: repository to install datalad from (defaults to datalad/datalad)
+    default: datalad/datalad
+  branch:
+    description: The branch of datalad to use (defaults to master)
+    default: master
+  install_root:
+    description: If installed from a branch and full_clone, install to this root (defaults to /opt/datalad)
+    default: /opt/datalad
+  release:
+    description: A datalad release to use (if defined, over-rides branch)
+    default: ""
+  full_clone:
+    description: Instead of cloning with --depth 1, clone the entire git history (branch only)
+    default: "false"
+  user:
+    description: User to provide to GitHub
+    default: "github-actions"
+  email:
+    description: Email to provide to GitHub
+    default: "github-actions@users.noreply.github.com"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set Root Directory
+      env:
+        ACTION_PATH: ${{ github.action_path }}
+      run: ${{ github.action_path }}/scripts/set_root.sh
+      shell: bash
+
+    - name: Check for Datalad Install
+      run: |
+         not_installed=false
+         which datalad || not_installed=true
+         echo "datalad_not_installed=${not_installed}" >> $GITHUB_ENV          
+      shell: bash
+
+    - name: Install Datalad
+      if: ${{ env.datalad_not_installed }}
+      env:
+        user: ${{ inputs.user }}
+        email: ${{ inputs.email }}
+        branch: ${{ inputs.branch }}
+        release: ${{ inputs.release }}
+        full_clone: ${{ inputs.full_clone }}
+        repository: ${{ inputs.repository }}
+        install_root: ${{ inputs.install_root }}
+      run: ${{ env.action_root }}/install/scripts/install.sh
+      shell: bash
+
+    - name: Get (download) Dataset
+      env:
+        source: ${{ inputs.source }}
+        paths: ${{ inputs.paths }}
+        recursive: ${{ inputs.jobs }}
+        jobs: ${{ inputs.jobs }}
+        all: ${{ inputs.all }}
+        action_path: ${{ github.action_path }}
+      run: ${{ github.action_path }}/scripts/get.sh
+      shell: bash
