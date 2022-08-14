@@ -41,3 +41,7 @@ else
         cd -
     fi
 fi
+
+# Ensure git annex added to path
+echo "/usr/share/miniconda/bin" >> ${GITHUB_PATH}
+ls /usr/share/miniconda/bin
