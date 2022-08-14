@@ -56,7 +56,6 @@ runs:
          not_installed=false
          which datalad || not_installed=true
          echo "datalad_not_installed=${not_installed}" >> $GITHUB_ENV          
-      shell: bash
 
     - name: Install Datalad
       if: ${{ env.datalad_not_installed }}
