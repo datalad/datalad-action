@@ -60,7 +60,10 @@ jobs:
           [ -e dataset/sub-23/sub-23_task-movie_beh.json ]
 
   dataset-get-cache:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-20.04, macos-10.15 ]
     name: Install Datalad, Get and Cache
     steps:
       - name: Checkout
