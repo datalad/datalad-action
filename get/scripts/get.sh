@@ -8,6 +8,7 @@ echo "$PWD"
 ls 
 
 echo "source: ${source}"
+echo "dataset_path: ${dataset_path}"
 echo "paths: ${paths}"
 echo "recursive: ${recursive}"
 echo "jobs: ${jobs}"
@@ -34,6 +35,9 @@ fi
 # but care must be taken since in case of --recursive could be multiple and only first one
 # should be taken
 CMD=(datalad -f '{path}' install --source "$source")
+
+# target dataset_path is optional
+[ -n "$dataset_path" ] && CMD+=("$dataset_path")
 
 # 1-to-1 flags 
 # shellcheck disable=SC2043  # just for now since we have only 1, but keeping logic

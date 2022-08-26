@@ -33,6 +33,31 @@ jobs:
           source: https://github.com/psychoinformatics-de/studyforrest-data-phase2
       - name: Show Result
         run: tree .
+      - name: Test Result
+        run: |
+          [ -e studyforrest-data-phase2 ]
+
+  dataset-get-into-path:
+    runs-on: ubuntu-latest
+    name: Install Datalad and Get into specific path and get some sample data paths
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Download Dataset
+        uses: ./get
+        with:
+          source: https://github.com/psychoinformatics-de/studyforrest-data-phase2
+          dataset_path: dataset
+          paths: |
+            sub-22/sub-22_task-movie_beh.json
+            sub-23/sub-23_task-movie_beh.json
+      - name: Show Result
+        run: tree .
+      - name: Test Result
+        run: |
+          [ -e dataset ]
+          [ -e dataset/sub-22/sub-22_task-movie_beh.json ]
+          [ -e dataset/sub-23/sub-23_task-movie_beh.json ]
 
   dataset-get-cache:
     runs-on: ubuntu-latest
@@ -65,6 +90,9 @@ jobs:
           source: https://github.com/psychoinformatics-de/studyforrest-data-phase2
       - name: Show Result
         run: tree .
+      - name: Test Result
+        run: |
+          [ -e studyforrest-data-phase2 ]
   
   install-datalad-branch:
     runs-on: ubuntu-latest

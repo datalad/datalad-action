@@ -4,6 +4,9 @@ inputs:
   source:
     description: dataset source
     required: true
+  dataset_path:
+    description: path where to install the dataset
+    required: false
   recursive:
     description: Get sub-datasets recursively (defaults to true)
     default: true
@@ -74,6 +77,7 @@ runs:
     - name: Get (download) Dataset
       env:
         source: ${{ inputs.source }}
+        dataset_path: ${{ inputs.dataset_path }}
         paths: ${{ inputs.paths }}
         recursive: ${{ inputs.jobs }}
         jobs: ${{ inputs.jobs }}
