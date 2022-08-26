@@ -17,10 +17,16 @@ echo "install_root: ${install_root}"
 git config --global --add user.name "${user}"
 git config --global --add user.email  "${email}"
 
-python -m pip install --upgrade pip
+python3 -m pip install --upgrade pip
 
 # Install git annex
-pip install datalad-installer
+python3 -m pip install datalad-installer
+
+# some debugging TEMP
+python --version
+python3 --version
+head `which datalad-installer`
+
 datalad-installer git-annex
 git config --global filter.annex.process "git-annex filter-process"
 
