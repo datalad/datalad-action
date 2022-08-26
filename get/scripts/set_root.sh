@@ -1,11 +1,11 @@
 #!/bin/bash
 
-set -e
+set -eu
 
-echo $PWD
+echo "$PWD"
 ls 
 
-action_root=$(dirname $ACTION_PATH)
-printf "Action root is ${action_root}\n"
-ls ${action_root}
-echo "action_root=${action_root}" >> $GITHUB_ENV
+action_root=$(dirname "$ACTION_PATH")
+echo "Action root is ${action_root}"
+ls "${action_root}"
+echo "action_root=${action_root}" >> "$GITHUB_ENV"
