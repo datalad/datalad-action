@@ -79,7 +79,7 @@ runs:
         source: ${{ inputs.source }}
         dataset_path: ${{ inputs.dataset_path }}
         paths: ${{ inputs.paths }}
-        recursive: ${{ inputs.jobs }}
+        recursive: ${{ inputs.recursive }}
         jobs: ${{ inputs.jobs }}
         all: ${{ inputs.all }}
         action_path: ${{ github.action_path }}
