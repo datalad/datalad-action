@@ -19,6 +19,10 @@ istrue() {
     echo "$@" | grep -q -i -e '^true$'
 }
 
+# Ensure git annex added to path
+echo "$CONDA/bin" >> ${GITHUB_PATH}
+export PATH=$CONDA/bin:$PATH
+
 # set -x  # to ease debugging etc
 
 # to ease debugging locally -- if no GITHUB_PATH, do not bother
