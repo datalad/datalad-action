@@ -20,18 +20,10 @@ istrue() {
 }
 
 # Ensure git annex added to path
-echo "$CONDA/bin" >> ${GITHUB_PATH}
+echo "$CONDA/bin" >> "${GITHUB_PATH}"
 export PATH=$CONDA/bin:$PATH
 
 # set -x  # to ease debugging etc
-
-# to ease debugging locally -- if no GITHUB_PATH, do not bother
-if [ -n "${GITHUB_PATH}" ]; then
-    # Ensure git annex added to path
-    echo "/usr/share/miniconda/bin" >> "${GITHUB_PATH}"
-    ls /usr/share/miniconda/bin
-    export PATH="/usr/share/miniconda/bin:$PATH"
-fi
 
 # compose command depending on the available options
 #
