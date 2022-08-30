@@ -17,17 +17,18 @@ echo "install_root: ${install_root}"
 git config --global --add user.name "${user}"
 git config --global --add user.email  "${email}"
 
-python -m pip install --upgrade pip
+python3 -m pip install --upgrade pip
 
 # Install git annex
-pip install datalad-installer
+python3 -m pip install datalad-installer
+
 datalad-installer git-annex
 git config --global filter.annex.process "git-annex filter-process"
 
 # Ensure git annex added to path
 # Datalad needs to be installed to this conda environment
-echo "/usr/share/miniconda/bin" >> "${GITHUB_PATH}"
-export PATH="/usr/share/miniconda/bin:$PATH"
+echo "$CONDA/bin" >> "${GITHUB_PATH}"
+export PATH="$CONDA/bin:$PATH"
 command -v pip
 
 # Do we have a release or a branch?

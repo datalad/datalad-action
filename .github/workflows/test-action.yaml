@@ -32,7 +32,7 @@ jobs:
         with:
           source: https://github.com/psychoinformatics-de/studyforrest-data-phase2
       - name: Show Result
-        run: tree .
+        run: find .
       - name: Test Result
         run: |
           [ -e studyforrest-data-phase2 ]
@@ -58,9 +58,14 @@ jobs:
           [ -e dataset ]
           [ -e dataset/sub-22/sub-22_task-movie_beh.json ]
           [ -e dataset/sub-23/sub-23_task-movie_beh.json ]
+        run: find .
 
   dataset-get-cache:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-20.04, macos-10.15, ubuntu-latest, macos-latest ]
     name: Install Datalad, Get and Cache
     steps:
       - name: Checkout
@@ -70,7 +75,7 @@ jobs:
         with:
           source: https://github.com/psychoinformatics-de/studyforrest-data-phase2
       - name: Show Result
-        run: tree .
+        run: find .
       - name: Cache Dataset
         uses: actions/cache@v3
         with:
@@ -89,11 +94,11 @@ jobs:
           branch: debian
           source: https://github.com/psychoinformatics-de/studyforrest-data-phase2
       - name: Show Result
-        run: tree .
+        run: find .
       - name: Test Result
         run: |
           [ -e studyforrest-data-phase2 ]
-  
+
   install-datalad-branch:
     runs-on: ubuntu-latest
     name: Install Datalad via Branch
