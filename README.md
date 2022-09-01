@@ -112,17 +112,18 @@ for more details.
 
 | Name | Description | Default | Required |
 |------|-------------|---------|----------|
-| source      | The dataset source (e.g., a https address) | unset | yes |
-| recursive   | Get sub-datasets recursively | true | no |
-| jobs        | Number of jobs (workers) for downloading with datalad | auto | no |
-| paths       | A list of paths (newline separated) in the dataset to download | unset | no |
-| all         | Get all data | unset | no |
-| repository  | Repository to install datalad | datalad/datalad | no |
-| branch      | The branch of datalad to use | master | no |
-| install_root| If installed from a branch and full_clone, install to this root | /opt/datalad | no |
-| release     | A datalad release to use (if defined, over-rides branch) | unset | no |
-| full_clone  | Instead of cloning with `--depth 1`, clone the entire git history (branch only) | false | no |
-| user        | User to provide to GitHub | github-actions | no |
-| email       | Email to provide to GitHub | github-actions@users.noreply.github.com | no |
+| source       | The dataset source (e.g., a https address) | unset | yes |
+| recursive    | Get sub-datasets recursively | true | no |
+| jobs         | Number of jobs (workers) for downloading with datalad | auto | no |
+| paths        | A list of paths (newline separated) in the dataset to download | unset | no |
+| dataset_path | Path where to install the dataset | unset | no |
+| all          | Get all data | unset | no |
+| repository   | Repository to install datalad | datalad/datalad | no |
+| branch       | The branch of datalad to use | master | no |
+| install_root | If installed from a branch and full_clone, install to this root | /opt/datalad | no |
+| release      | A datalad release to use (if defined, over-rides branch) | unset | no |
+| full_clone   | Instead of cloning with `--depth 1`, clone the entire git history (branch only) | false | no |
+| user         | User to provide to GitHub | github-actions | no |
+| email        | Email to provide to GitHub | github-actions@users.noreply.github.com | no |
 
 Have any questions? Don't hesitate to open an issue! 
