@@ -4,6 +4,9 @@
 
 set -e
 
+# ** globbing support
+shopt -s globstar
+
 echo "$PWD"
 ls 
 
