@@ -164,6 +164,8 @@ jobs:
       - name: Install Datalad via Release
         uses: ./install
         with:
-          release: 0.17.2
+          release: 0.18.0
       - name: Check Installed
-        run: which datalad
+        run: |
+          which datalad
+          datalad --version | grep 0.18.0
