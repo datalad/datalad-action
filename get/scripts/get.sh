@@ -4,9 +4,6 @@
 
 set -e
 
-# ** globbing support
-shopt -s globstar
-
 echo "$PWD"
 ls 
 
@@ -14,6 +11,7 @@ echo "source: ${source}"
 echo "dataset_path: ${dataset_path}"
 echo "paths: ${paths}"
 echo "recursive: ${recursive}"
+echo "globstar: ${globstar}"
 echo "jobs: ${jobs}"
 echo "all: ${all}"
 echo "action_path: ${action_path}"
@@ -25,6 +23,11 @@ istrue() {
 # Ensure git annex added to path
 echo "$CONDA/bin" >> "${GITHUB_PATH}"
 export PATH=$CONDA/bin:$PATH
+
+if istrue "$globstar"; then
+	# ** globbing support
+	shopt -s globstar
+fi
 
 # set -x  # to ease debugging etc
 

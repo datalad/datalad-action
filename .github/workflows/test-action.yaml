@@ -61,7 +61,7 @@ jobs:
       - name: Show Result
         run: find .
 
-  dataset-get-globs:
+  dataset-get-globstar:
     runs-on: ubuntu-latest
     name: Install Datalad and Get test dataset with globs and tricky path names
     steps:
@@ -71,6 +71,7 @@ jobs:
         uses: ./get
         with:
           source: https://github.com/datalad/datalad-action-test
+          globstar: true
           paths: |
             d1/**/*le.dat
             d2/su\ b\;1/**/*\ e.dat
