@@ -61,6 +61,32 @@ jobs:
       - name: Show Result
         run: find .
 
+  dataset-get-globs:
+    runs-on: ubuntu-latest
+    name: Install Datalad and Get test dataset with globs and tricky path names
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Download Dataset
+        uses: ./get
+        with:
+          source: https://github.com/datalad/datalad-action-test
+          paths: |
+            d1/**/*le.dat
+            d2/su\ b\;1/**/*\ e.dat
+      - name: Show Result
+        run: |
+          tree .
+          find .
+      - name: Test Result
+        run: |
+          [ -e d1/sub1/sub2/file.dat ]
+          [ -e d1/sub1/file.dat ]
+          [ -e d1/file.dat ]
+          [ -e d2/su\ b\;1/su\ b\;2/f\ i\ l\ e.dat ]
+          [ -e d2/su\ b\;1/f\ i\ l\ e.dat ]
+          [ ! -e d2/f\ i\ l\ e.dat ]
+
   dataset-get-cache:
     runs-on: ${{ matrix.os }}
     strategy:
