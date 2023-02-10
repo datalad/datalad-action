@@ -66,5 +66,6 @@ installed_path=( $("${CMD[@]}") )
 if [ -n "$paths" ]; then
     echo "Getting paths"
     cd "${installed_path[0]}"
-    echo "$paths" | xargs datalad get
+	# shellcheck disable=SC2086
+    echo $paths | xargs datalad get
 fi
