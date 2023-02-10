@@ -58,6 +58,7 @@ jobs:
           [ -e dataset ]
           [ -e dataset/sub-22/sub-22_task-movie_beh.json ]
           [ -e dataset/sub-23/sub-23_task-movie_beh.json ]
+      - name: Show Result
         run: find .
 
   dataset-get-cache:
