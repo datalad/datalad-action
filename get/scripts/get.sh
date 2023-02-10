@@ -4,8 +4,13 @@
 
 set -e
 
+echo "DEBUG INFO:"
+set -x
 echo "$PWD"
-ls 
+ls
+bash --version
+which -a bash
+set +x
 
 echo "source: ${source}"
 echo "dataset_path: ${dataset_path}"
