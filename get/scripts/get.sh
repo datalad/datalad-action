@@ -74,6 +74,21 @@ installed_path=( $("${CMD[@]}") )
 if [ -n "$paths" ]; then
     echo "Getting paths"
     cd "${installed_path[0]}"
+	set -x
+	set +e
+    PS4='+${LINENO}: '
+	set +u
+	echo "DEBUG a little"
+	echo $paths
+	ls -l $paths
+	eval ls -ld "$paths"
+	eval ls -ld $paths
+    echo $paths | xargs ls -l
+    # use ls to get them expanded?
+    /bin/ls -d1 $paths | xargs ls -l
+    /bin/ls -d1 $paths | tr '\n' '\0' | xargs -0 ls -l
+    eval /bin/ls -d1 "$paths" | xargs ls -l
+    eval /bin/ls -d1 "$paths" | tr '\n' '\0' | xargs -0 ls -l
 	# shellcheck disable=SC2086
     echo $paths | xargs datalad get
 fi
