@@ -87,6 +87,7 @@ jobs:
           [ -e d2/su\ b\;1/su\ b\;2/f\ i\ l\ e.dat ]
           [ -e d2/su\ b\;1/f\ i\ l\ e.dat ]
           [ ! -e d2/f\ i\ l\ e.dat ]
+        working-directory: ./datalad-action-test
 
   dataset-get-cache:
     runs-on: ${{ matrix.os }}
