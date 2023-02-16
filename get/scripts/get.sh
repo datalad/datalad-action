@@ -89,6 +89,8 @@ if [ -n "$paths" ]; then
     /bin/ls -d1 $paths | tr '\n' '\0' | xargs -0 ls -l
     eval /bin/ls -d1 "$paths" | xargs ls -l
     eval /bin/ls -d1 "$paths" | tr '\n' '\0' | xargs -0 ls -l
+    echo "$paths" | python3 -c "import os, glob, sys; [ sys.stdout.write(f'{x}\000') for x in sum([glob.glob(x.rstrip(os.linesep)) for x in sys.stdin.readlines()], [])]" | xargs -0 ls -1d
+    echo "$paths" | python3 -c "import os, glob, sys; [ sys.stdout.write(f'{x}\000') for x in sum([glob.glob(x.rstrip(os.linesep)) for x in sys.stdin.readlines()], [])]" | xargs -0 datalad get
 	# shellcheck disable=SC2086
-    echo $paths | xargs datalad get
+    #echo $paths | xargs datalad get
 fi
