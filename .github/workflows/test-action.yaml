@@ -74,7 +74,7 @@ jobs:
           globstar: true
           paths: |
             d1/**/*le.dat
-            d2/su\ b\;1/**/*\ e.dat
+            d2/su b;1/**/* e.dat
       - name: Show Result
         run: |
           tree .
