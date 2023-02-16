@@ -29,10 +29,7 @@ istrue() {
 echo "$CONDA/bin" >> "${GITHUB_PATH}"
 export PATH=$CONDA/bin:$PATH
 
-if istrue "$globstar"; then
-	# ** globbing support
-	shopt -s globstar
-fi
+istrue "$globstar" && glob_recursive=True || glob_recursive=False
 
 # set -x  # to ease debugging etc
 
@@ -74,23 +71,10 @@ installed_path=( $("${CMD[@]}") )
 if [ -n "$paths" ]; then
     echo "Getting paths"
     cd "${installed_path[0]}"
-	set -x
-	set +e
-    PS4='+${LINENO}: '
-	set +u
-	echo "DEBUG a little"
-	echo $paths
-	ls -l $paths
-	eval ls -ld "$paths"
-	eval ls -ld $paths
-    echo $paths | xargs ls -l
-    # use ls to get them expanded?
-    /bin/ls -d1 $paths | xargs ls -l
-    /bin/ls -d1 $paths | tr '\n' '\0' | xargs -0 ls -l
-    eval /bin/ls -d1 "$paths" | xargs ls -l
-    eval /bin/ls -d1 "$paths" | tr '\n' '\0' | xargs -0 ls -l
-    echo "$paths" | python3 -c "import os, glob, sys; [ sys.stdout.write(f'{x}\000') for x in sum([glob.glob(x.rstrip(os.linesep)) for x in sys.stdin.readlines()], [])]" | xargs -0 ls -1d
-    echo "$paths" | python3 -c "import os, glob, sys; [ sys.stdout.write(f'{x}\000') for x in sum([glob.glob(x.rstrip(os.linesep)) for x in sys.stdin.readlines()], [])]" | xargs -0 datalad get
-	# shellcheck disable=SC2086
-    #echo $paths | xargs datalad get
+    # We had to come up with this abomination of going through Python's glob since could not
+    # make it otherwise work reliably in bash globbing with having spaces and other fancy symbols
+    # in the glob pattern.
+    echo "$paths" \
+    | python3 -c "import os, glob, sys; [ sys.stdout.write(f'{x}\000') for x in sum([glob.glob(x.rstrip(os.linesep), recursive=${glob_recursive}) for x in sys.stdin.readlines()], [])]" \
+    | xargs -0 datalad get
 fi
