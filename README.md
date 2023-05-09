@@ -114,6 +114,7 @@ for more details.
 |------|-------------|---------|----------|
 | source       | The dataset source (e.g., a https address) | unset | yes |
 | recursive    | Get sub-datasets recursively | true | no |
+| globstar     | Enable recursive AKA globstar (`**`) globbing | false | no |
 | jobs         | Number of jobs (workers) for downloading with datalad | auto | no |
 | paths        | A list of paths (newline separated) in the dataset to download | unset | no |
 | dataset_path | Path where to install the dataset | unset | no |

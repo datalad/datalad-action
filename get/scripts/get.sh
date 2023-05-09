@@ -4,13 +4,19 @@
 
 set -e
 
+echo "DEBUG INFO:"
+set -x
 echo "$PWD"
-ls 
+ls
+bash --version
+which -a bash
+set +x
 
 echo "source: ${source}"
 echo "dataset_path: ${dataset_path}"
 echo "paths: ${paths}"
 echo "recursive: ${recursive}"
+echo "globstar: ${globstar}"
 echo "jobs: ${jobs}"
 echo "all: ${all}"
 echo "action_path: ${action_path}"
@@ -22,6 +28,8 @@ istrue() {
 # Ensure git annex added to path
 echo "$CONDA/bin" >> "${GITHUB_PATH}"
 export PATH=$CONDA/bin:$PATH
+
+istrue "$globstar" && glob_recursive=True || glob_recursive=False
 
 # set -x  # to ease debugging etc
 
@@ -63,5 +71,10 @@ installed_path=( $("${CMD[@]}") )
 if [ -n "$paths" ]; then
     echo "Getting paths"
     cd "${installed_path[0]}"
-    echo "$paths" | xargs datalad get
+    # We had to come up with this abomination of going through Python's glob since could not
+    # make it otherwise work reliably in bash globbing with having spaces and other fancy symbols
+    # in the glob pattern.
+    echo "$paths" \
+    | python3 -c "import os, glob, sys; [ sys.stdout.write(f'{x}\000') for x in sum([glob.glob(x.rstrip(os.linesep), recursive=${glob_recursive}) for x in sys.stdin.readlines()], [])]" \
+    | xargs -0 datalad get
 fi

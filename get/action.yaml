@@ -10,6 +10,9 @@ inputs:
   recursive:
     description: Get sub-datasets recursively (defaults to true)
     default: true
+  globstar:
+    description: Enable recursive AKA globstar (`**`) globbing (defaults to false)
+    default: false
   jobs:
     description: Number of jobs (workers) for downloading with datalad (defaults to auto)
     required: false
@@ -58,7 +61,7 @@ runs:
       run: |
          not_installed=false
          which datalad || not_installed=true
-         echo "datalad_not_installed=${not_installed}" >> $GITHUB_ENV          
+         echo "datalad_not_installed=${not_installed}" >> $GITHUB_ENV
       shell: bash
 
     - name: Install Datalad
@@ -80,6 +83,7 @@ runs:
         dataset_path: ${{ inputs.dataset_path }}
         paths: ${{ inputs.paths }}
         recursive: ${{ inputs.recursive }}
+        globstar: ${{ inputs.globstar }}
         jobs: ${{ inputs.jobs }}
         all: ${{ inputs.all }}
         action_path: ${{ github.action_path }}
