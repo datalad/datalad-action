@@ -12,6 +12,7 @@ echo "release: ${release}"
 echo "branch: ${branch}"
 echo "full_clone: ${full_clone}"
 echo "install_root: ${install_root}"
+echo "pip_install: ${pip_install[*]}"
 
 # This is in the install instructions
 git config --global --add user.name "${user}"
@@ -49,4 +50,8 @@ else
         pip install .
         cd -
     fi
+fi
+
+if [ -n "${pip_install}" ]; then
+    pip install "${pip_install[@]}"
 fi
