@@ -35,6 +35,9 @@ inputs:
   install_root:
     description: If installed from a branch and full_clone, install to this root (defaults to /opt/datalad)
     default: /opt/datalad
+  pip_install:
+    description: Extra pip installs to do
+    default: ""
   release:
     description: A datalad release to use (if defined, over-rides branch)
     default: ""
@@ -74,6 +77,7 @@ runs:
         full_clone: ${{ inputs.full_clone }}
         repository: ${{ inputs.repository }}
         install_root: ${{ inputs.install_root }}
+        pip_install: ${{ inputs.pip_install }}
       run: ${{ env.action_root }}/install/scripts/install.sh
       shell: bash
 
