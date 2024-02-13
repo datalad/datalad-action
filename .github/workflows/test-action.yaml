@@ -180,9 +180,7 @@ jobs:
       - name: Install Datalad and some extensions
         uses: ./install
         with:
-          pip_install:
-          - datalad-osf
-          - datalad-next
+          pip_install: datalad-osf datalad-next
       - name: Check Installed
         run: |
           which datalad
