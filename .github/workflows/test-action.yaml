@@ -170,3 +170,19 @@ jobs:
         run: |
           which datalad
           datalad --version | grep 0.18.0
+  
+  install-datalad-osf:
+    runs-on: ubuntu-latest
+    name: Install Datalad with some extensions
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Datalad and some extensions
+        uses: ./install
+        with:
+          pip_install: datalad-osf datalad-next
+      - name: Check Installed
+        run: |
+          which datalad
+          which git-remote-osf
+          datalad wtf -S extensions | grep datalad_next

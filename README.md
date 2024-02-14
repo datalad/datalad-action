@@ -52,6 +52,7 @@ for more details.
 | repository  | Repository to install datalad | datalad/datalad | no |
 | branch      | The branch of datalad to use | master | no |
 | install_root| If installed from a branch and full_clone, install to this root | /opt/datalad | no |
+| pip_install | Extra pip installs to do |  | no |
 | release     | A datalad release to use (if defined, over-rides branch) | unset | no |
 | full_clone  | Instead of cloning with `--depth 1`, clone the entire git history (branch only) | false | no |
 | user        | User to provide to GitHub | github-actions | no |
@@ -122,6 +123,7 @@ for more details.
 | repository   | Repository to install datalad | datalad/datalad | no |
 | branch       | The branch of datalad to use | master | no |
 | install_root | If installed from a branch and full_clone, install to this root | /opt/datalad | no |
+| pip_install | Extra pip installs to do |  | no |
 | release      | A datalad release to use (if defined, over-rides branch) | unset | no |
 | full_clone   | Instead of cloning with `--depth 1`, clone the entire git history (branch only) | false | no |
 | user         | User to provide to GitHub | github-actions | no |
