@@ -23,7 +23,7 @@ python3 -m pip install --upgrade pip
 # Install git annex
 python3 -m pip install datalad-installer
 
-datalad-installer git-annex
+datalad-installer --sudo ok git-annex
 git config --global filter.annex.process "git-annex filter-process"
 
 # Ensure git annex added to path
